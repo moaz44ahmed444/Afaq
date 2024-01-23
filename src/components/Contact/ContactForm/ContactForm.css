@@ -1,0 +1,97 @@
+.ContactForm{
+    width: 100%;
+    height: fit-content;
+    background: #252525;
+    padding-bottom: 3rem;
+}
+
+.ContactForm h2{
+    color: #FFF;
+    width: 683px;
+    margin-left: 20%;
+    text-align: center;
+    font-family: DM Serif Display;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 75px */
+    letter-spacing: 0.5px;
+    padding-top: 4rem;
+}
+
+.ContactForm .details{
+    display: flex;
+    width: 349px;
+    padding: 76px 32px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    flex-shrink: 0;
+    border-radius: 50px;
+    background: rgba(28, 28, 28, 0.92);
+}
+
+.ContactForm .formDetails {
+    width: 797px;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    background-color: #252525;
+
+}
+
+
+.ContactForm  input {
+    height: 4rem;
+    background-color: #252525;
+    border: #252525;
+    border-bottom: #939393 1px solid;
+    border-radius: 0%;
+}
+
+.ContactForm  input:active::after {
+    height: 4rem;
+    background-color: #252525;
+    border: #252525;
+    border-bottom: #939393 1px solid;
+    border-radius: 0%;
+    color: #fff;
+}
+
+.ContactForm  input::placeholder {
+    padding-left: 1rem;
+    color: #fff;
+}
+
+.ContactForm  textarea::placeholder {
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+    color: #fff;
+
+}
+.ContactForm  textarea {
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+    color: #fff;
+    background-color: #252525;
+    border: #252525;
+    border-bottom: #939393 1px solid;
+    border-radius: 0%;
+}
+
+.ContactForm  button {
+    background: var(--Style, #E5BD63);
+    width: 30%;
+    height: 4rem;
+    border: #252525;
+    float: inline-end;
+}
+
+.ContactForm .MapPhoto {
+    flex-shrink: 0;
+    background-repeat: no-repeat ;
+    background-size: cover;
+    padding-top: 8rem;
+    border-radius: 50px;
+    padding-bottom: 5rem;
+} 

@@ -1,0 +1,32 @@
+.process {
+    width: 100%;
+    height: 800px;
+    background: #252525;
+}
+
+.profile-photo {
+    border-radius: 50%;
+    width: 52.332px;
+    height: 52.332px;
+}
+
+.process input {
+    height: 4rem;
+    
+}
+
+.process input::placeholder {
+    padding-left: 1rem;
+}
+
+.process textarea::placeholder {
+    padding-top: 0.5rem;
+}
+
+.process button {
+    background: var(--Style, #E5BD63);
+    width: 30%;
+    height: 4rem;
+    border: #252525;
+}
+

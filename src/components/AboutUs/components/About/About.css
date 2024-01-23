@@ -1,0 +1,100 @@
+.about {
+    width: 100%;
+    height: 1800px;
+    background: #252525;
+}
+
+.about .Title {
+    color: var(--Style, #E5BD63);
+    font-family: Nunito;
+    font-size: 75px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 110%; /* 82.5px */
+    padding-top: 5rem;
+}
+
+.data .description {
+    color: #FFF;
+    text-align: center;
+    font-family: Nunito;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.4%; /* 39.35px */
+
+}
+
+.about .image1 {
+    width: 800px;
+    height: 550px;
+    flex-shrink: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50px;
+}
+
+.about .image2 {
+    width: 450px;
+    height: 550px;
+    flex-shrink: 0;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 50px;
+}
+
+.about .row h3{
+    color: var(--Style, #E5BD63);
+    text-align: center;
+    font-family: Nunito;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 110%; /* 55px */
+}
+
+.about .row p {
+    color: #FFF;
+    font-family: Nunito;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.4%; /* 34.628px */
+}
+
+.stat {
+    display: flex;
+    padding: 67px;
+    gap: 10px;
+    border-radius: 50px;
+    background: rgba(31, 31, 31, 0.52);
+}
+
+.stat h2 {
+    color: #FFF;
+    font-family: Nunito;
+    font-size: 75px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 110%; /* 82.5px */
+
+}
+
+.stat h2 span {
+    color: var(--Style, #E5BD63);
+    font-family: Nunito;
+    font-size: 75px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 110%;
+}
+
+.stat p {
+    color: #FFF;
+    font-family: Nunito;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 157.4%; /* 39.35px */
+}
+

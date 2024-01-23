@@ -1,0 +1,74 @@
+.OurValues {
+    width: 100%;
+    height: fit-content;
+    background: #252525;
+}
+
+.OurValues .OurValuesData .Title {
+    color: var(--Style, #E5BD63);
+    font-family: Nunito;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding-top: 5rem;
+}
+
+.OurValues .OurValuesData .description {
+    color: #FFF;
+    text-align: center;
+    font-family: Nunito;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 110%; /* 55px */
+
+
+}
+
+.pros {
+    display: flex;
+    padding: 39px 27px;
+
+    gap: 10px;
+    flex-shrink: 0;
+
+}
+
+.pros > div {
+    background: #1F1F1F;    
+    display: flex;
+    width: 600px;
+    padding: 39px 27px;
+    align-items: flex-start;
+    gap: 10px;
+    flex-shrink: 0;
+    border-radius: 30px;
+}
+
+.pros img{
+    width: 129px;
+    height: 160px;
+    flex-shrink: 0;
+}
+
+.pros .data{
+    display: flex;
+    width: 400px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 9px;
+    flex-shrink: 0;
+    color: #FFF;
+}
+
+.pros .data h6{
+    color: var(--Style, #E5BD63);
+    font-family: Nunito;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 110%; /* 33px */
+
+}
+

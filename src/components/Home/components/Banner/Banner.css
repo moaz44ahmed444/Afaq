@@ -1,0 +1,43 @@
+.Home-Banner {
+    width: 100%;
+    height: 900px;
+    
+    
+    color: #E5E5E5;
+
+
+
+}
+
+.Home-Banner .banner-image {
+    background: url("../../../../Images/WhatsApp\ Image\ 2024-01-16\ at\ 4.42.45\ PM\ \(2\).jpeg"), lightgray ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+
+.Home-Banner h1{
+    color: #E5E5E5;
+    font-family: Gothic A1;
+    font-size: 51px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+.Home-Banner p{
+    color: #E5E5E5;
+    font-family: Gothic A1;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: capitalize;
+}
+
+/* .Banner-Content {
+    padding-right: 100px;
+    padding-top: 18rem;
+} */

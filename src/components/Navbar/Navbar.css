@@ -1,0 +1,32 @@
+.navbar {
+    margin-left: 80px;
+    margin-top: 40px;
+    background-color: #252525;
+    height: 5rem;
+    position: sticky;
+    width: 90%;
+
+}
+
+.nav-item :active {
+    color: #E5BD63;
+}
+
+.navbar-brand {
+    margin-inline-start: -60px;
+}
+
+.nav-logo {
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    width: 6rem;
+    height: 6rem;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.nav-logo img {
+    width: 5rem;
+    height: 3rem;
+}

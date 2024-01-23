@@ -1,0 +1,35 @@
+.ourServices {
+    width: 100%;
+    height: 800px;
+    background: #252525;
+}
+
+/* .description {
+    
+} */
+
+.card {
+    position: relative;
+    background-color: #252525;
+    padding: 1px solid ;
+    height: 25rem;
+    width: 23rem;
+    color: aliceblue;
+    border-color: grey;
+    border-radius: 0%;
+}
+
+.card img {
+    height: 50px;
+    width: 50px;
+    margin: 5px;
+    padding: 5;
+}
+
+.card-body{
+    margin-top: 6rem;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-feature-settings: 'liga' off;
+    /* Display md/Regular */
+    font-family: Playfair Display;
+}
