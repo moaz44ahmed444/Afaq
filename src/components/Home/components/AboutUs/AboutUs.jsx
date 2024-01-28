@@ -1,6 +1,6 @@
 import React from 'react';
 import './AboutUs.css';
-import img1 from '../../../../Images/WhatsApp Image 2024-01-16 at 4.42.45 PM (3).jpeg';
+import img1 from '../../../../Images/notDecoration/WhatsApp Image 2024-01-25 at 9.00.03 AM (1).jpeg';
 import img2 from '../../../../Images/WhatsApp Image 2024-01-16 at 4.42.42 PM (1).jpeg';
 
 const AboutUs = () => {

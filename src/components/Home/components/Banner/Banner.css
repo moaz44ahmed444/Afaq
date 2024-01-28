@@ -10,9 +10,10 @@
 }
 
 .Home-Banner .banner-image {
-    background: url("../../../../Images/WhatsApp\ Image\ 2024-01-16\ at\ 4.42.45\ PM\ \(2\).jpeg"), lightgray ;
+    background: url("../../../../Images/notDecoration/WhatsApp\ Image\ 2024-01-25\ at\ 9.00.01\ AM\ \(5\).jpeg"), lightgray ;
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: 60% 40%;
 }
 
 

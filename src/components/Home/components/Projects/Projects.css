@@ -58,4 +58,3 @@
  .box:hover::before {
     transform: translate(0);
 }
-

@@ -1,6 +1,6 @@
 import React from 'react';
 import './OurVision.css';
-import Image from '../../../../Images/WhatsApp Image 2024-01-16 at 4.42.41 PM (2).jpeg'
+import Image from '../../../../Images/notDecoration/WhatsApp Image 2024-01-25 at 9.00.37 AM.jpeg'
 const OurVision = () => {
   return (
     <div className='OurVision'>

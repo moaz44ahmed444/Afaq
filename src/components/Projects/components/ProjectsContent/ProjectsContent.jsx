@@ -6,7 +6,8 @@ import ClassicMinimalBedroom from '../../../../Images/WhatsApp Image 2024-01-16 
 import ModernBedroom from '../../../../Images/WhatsApp Image 2024-01-16 at 4.42.44 PM (1).jpeg';
 import MinimalBedroomTable from '../../../../Images/WhatsApp Image 2024-01-16 at 4.42.44 PM (2).jpeg';
 import SystemTable from '../../../../Images/WhatsApp Image 2024-01-16 at 4.42.45 PM.jpeg';
-import ModernMedroom1 from '../../../../Images/WhatsApp Image 2024-01-16 at 4.42.45 PM.jpeg';
+import Lazordy from '../../../../Images/notDecoration/WhatsApp Image 2024-01-25 at 9.00.04 AM.jpeg';
+import Door from '../../../../Images/notDecoration/WhatsApp Image 2024-01-25 at 9.00.04 AM (1).jpeg';
 import ModernMedroom2 from '../../../../Images/WhatsApp Image 2024-01-16 at 4.42.45 PM (1).jpeg';
 import rightArrow from '../../../../Images/right.svg';
 
@@ -59,7 +60,7 @@ const ProjectsContent = () => {
 
             <div className="row ">
                 <div className="cards col-lg-6 ">
-                        <TallCard image={MinimalBedroom1} title="Minimal Bedroom" />                
+                        <TallCard image={Lazordy} title="Minimal Bedroom" />                
                         <ShortCard image={ClassicMinimalBedroom} title="Classic Minimal Bedroom" />
                         <TallCard image={MinimalBedroomTable} title="Minimal Bedroom table" />
                         <ShortCard image={MinimalBedroom1} title="Modern Medroom" />
@@ -68,7 +69,7 @@ const ProjectsContent = () => {
                         <ShortCard image={MinimalBedroom2} title="Minimal Bedroom" />
                         <TallCard image={ModernBedroom} title="Bodern Medroom" />
                         <ShortCard image={SystemTable} title="System Table" />
-                        <ShortCard image={ClassicMinimalBedroom} title="Modern Bedroom" />
+                        <ShortCard image={Door} title="Modern Bedroom" />
                 </div>
             </div>
 

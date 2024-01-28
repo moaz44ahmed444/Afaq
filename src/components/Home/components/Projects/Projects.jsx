@@ -1,7 +1,7 @@
 import React from 'react';
 import './Projects.css';
 import logo1 from '../../../../Images/WhatsApp Image 2024-01-16 at 4.42.43 PM (2).jpeg';
-import logo2 from '../../../../Images/WhatsApp Image 2024-01-16 at 4.42.45 PM (1).jpeg';
+import logo2 from '../../../../Images/notDecoration/WhatsApp Image 2024-01-25 at 9.00.02 AM (2).jpeg';
 import logo3 from '../../../../Images/WhatsApp Image 2024-01-16 at 4.42.44 PM (2).jpeg';
 
 const Projects = () => {
@@ -18,8 +18,8 @@ const Projects = () => {
                   <img src={logo1} alt="" class="img-fluid rounded" />
               </div>
           </div>
-          <div class="middle col-sm-6 col-lg-4 "style={{marginTop: "5rem"}} >
-              <div class="box mb-3 bg-dark rounded" >
+          <div class="middle col-sm-6 col-lg-4 "style={{marginTop: "5rem", }} >
+              <div class=" box mb-3 bg-dark rounded" >
                   <img src={logo2} alt="" class="img-fluid rounded" />
               </div>
           </div>
