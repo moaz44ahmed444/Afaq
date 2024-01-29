@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './AboutUs.css';
 import img1 from '../../../../Images/notDecoration/WhatsApp Image 2024-01-25 at 9.00.03 AM (1).jpeg';
 import img2 from '../../../../Images/WhatsApp Image 2024-01-16 at 4.42.42 PM (1).jpeg';
+import axios from 'axios';
 
 const AboutUs = () => {
+  const [HomeData, setHomeData] = useState([]);
+  async function getHome(){
+    let response = await axios.get(``);
+    setHomeData(response);
+    console.log(response);
+  }
+
+  useEffect(()=>{
+    // getHome();
+  },[])
   return (
     <div className="home-about">
       <div className='row justify-content-center align-items-center py-3'>

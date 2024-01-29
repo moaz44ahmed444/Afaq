@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './About.css';
 import Image1 from'../../../../Images/notDecoration/WhatsApp Image 2024-01-25 at 9.00.01 AM (4).jpeg';
 import Image2 from'../../../../Images/WhatsApp Image 2024-01-16 at 4.43.21 PM (3).jpeg';
+import axios from 'axios';
 
 const About = () => {
+    const [AboutUsData, setAboutUsData] = useState([]);
+    async function getAboutUs(){
+      let response = await axios.get(``);
+      setAboutUsData(response);
+      console.log(response);
+    }
+  
+    useEffect(()=>{
+    //   getAboutUs();
+    },[]);
   return (
     <div className='about'>
         <div className="container">

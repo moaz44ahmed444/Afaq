@@ -1,11 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './ContactForm.css';
 import Call from '../../../Images/Call Icon.svg';
 import Domain from '../../../Images/Domain.svg';
 import Mail from '../../../Images/Mail.svg'
 import Map from '../../../Images/Map.png';
+import axios from 'axios';
 
 const ContactForm = () => {
+    const [ContactData, setContactData] = useState([]);
+    async function getContact(){
+      let response = await axios.get(``);
+      setContactData(response);
+      console.log(response);
+    }
+  
+    useEffect(()=>{
+    //   getContact();
+    },[]);
+    
   return (
     <div className='ContactForm'>
         <div className="container">

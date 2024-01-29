@@ -1,6 +1,19 @@
-import React from 'react'
-import './ContactBanner.css'
+import React, { useEffect, useState } from 'react'
+import './ContactBanner.css';
+import axios from 'axios';
+
 const ContactBanner = () => {
+  const [ContacteData, setContacteData] = useState([]);
+  async function getContacte(){
+    let response = await axios.get(``);
+    setContacteData(response);
+    console.log(response);
+  }
+
+  useEffect(()=>{
+    // getContacte();
+  },[]);
+  
   return (
     <div className='ContactBanner'>
         <div className='row h-100'>

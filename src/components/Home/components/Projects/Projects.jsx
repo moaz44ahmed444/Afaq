@@ -13,19 +13,19 @@ const Projects = () => {
           <p className='description pb-5'>our portfolio is a testament to our commitment to excellence in both advertising and interior design</p>
         </div>
         <div className="row align-items-center">
-          <div class="first col-sm-6 col-lg-4">
-              <div class="box mb-3 bg-dark rounded" >
-                  <img src={logo1} alt="" class="img-fluid rounded" />
+          <div className="first col-sm-6 col-lg-4">
+              <div className="box mb-3 bg-dark rounded" >
+                  <img src={logo1} alt="" className="img-fluid rounded" />
               </div>
           </div>
-          <div class="middle col-sm-6 col-lg-4 "style={{marginTop: "5rem", }} >
-              <div class=" box mb-3 bg-dark rounded" >
-                  <img src={logo2} alt="" class="img-fluid rounded" />
+          <div className="middle col-sm-6 col-lg-4 "style={{marginTop: "5rem", }} >
+              <div className=" box mb-3 bg-dark rounded" >
+                  <img src={logo2} alt="" className="img-fluid rounded" />
               </div>
           </div>
-          <div class="last col-sm-6 col-lg-4 " style={{marginTop: "10rem"}}>
-              <div class="box mb-3 bg-dark rounded" >
-                  <img src={logo3} alt="" class="img-fluid rounded" />
+          <div className="last col-sm-6 col-lg-4 " style={{marginTop: "10rem"}}>
+              <div className="box mb-3 bg-dark rounded" >
+                  <img src={logo3} alt="" className="img-fluid rounded" />
               </div>
           </div>
         </div>

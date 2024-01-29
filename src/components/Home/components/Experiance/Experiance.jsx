@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Experiance.css';
 import { CircularProgressbar, CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import axios from 'axios';
 
 const Experiance = () => {
+  const [HomeData, setHomeData] = useState([]);
+  async function getHome(){
+    let response = await axios.get(``);
+    setHomeData(response);
+    console.log(response);
+  }
+
+  useEffect(()=>{
+    // getHome();
+  },[]);
+
   return (
     <div className='experiance'>
       <div className="container">

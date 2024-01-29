@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Feedback.css';
 import icon1 from '../../../../Images/Icon.svg';
 import icon2 from '../../../../Images/Icon (1).svg';
@@ -6,9 +6,20 @@ import icon3 from '../../../../Images/Group 16.svg';
 import profilePhoto1 from '../../../../Images/Photo.png';
 import profilePhoto2 from '../../../../Images/Photo (1).png';
 import profilePhoto3 from '../../../../Images/Photo (2).png';
+import axios from 'axios';
 
 
 const Feedback = () => {
+  const [HomeData, setHomeData] = useState([]);
+  async function getHome(){
+    let response = await axios.get(``);
+    setHomeData(response);
+    console.log(response);
+  }
+
+  useEffect(()=>{
+    // getHome();
+  },[])
   return (
     <div className='feedback'>
       <div className="title text-center pt-5 mt-5">Clients feedback</div>
@@ -45,7 +56,7 @@ const Feedback = () => {
         <div className='row'>
           {/* Card 1 */}
           <div className="col-md-4 mb-4">
-          <div class="card p-4" style={{backgroundColor: "#252525", color: "aliceblue", borderColor:"none" }}>
+          <div className="card p-4" style={{backgroundColor: "#252525", color: "aliceblue", borderColor:"none" }}>
             <div className='statistics col-2 d-flex align-items-center' style={{width: "auto"}}>
               <img src={profilePhoto1} className="profile-photo" alt="..." />
               <div className="text-white ms-3">
@@ -63,7 +74,7 @@ const Feedback = () => {
 
           {/* Card 2 */}
           <div className="col-md-4 mb-4">
-            <div class="card p-4" style={{backgroundColor: "#252525", color: "aliceblue", borderColor:"none" }}>
+            <div className="card p-4" style={{backgroundColor: "#252525", color: "aliceblue", borderColor:"none" }}>
               <div className='statistics col-2 d-flex align-items-center' style={{width: "auto"}}>
                 <img src={profilePhoto2} className="profile-photo" alt="..." />
                 <div className="text-white ms-3">
@@ -81,7 +92,7 @@ const Feedback = () => {
 
           {/* Card 3 */}
           <div className="col-md-4 mb-4">
-            <div class="card p-4" style={{backgroundColor: "#252525", color: "aliceblue", borderColor:"none" }}>
+            <div className="card p-4" style={{backgroundColor: "#252525", color: "aliceblue", borderColor:"none" }}>
               <div className='statistics col-2 d-flex align-items-center' style={{width: "auto"}}>
                 <img src={profilePhoto3} className="profile-photo" alt="..." />
                 <div className="text-white ms-3">

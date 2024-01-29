@@ -1,6 +1,18 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 
 const ProjectsBanner = () => {
+  const [ProjectsData, setProjectsData] = useState([]);
+  async function getProjects(){
+    let response = await axios.get(``);
+    setProjectsData(response);
+    console.log(response);
+  }
+
+  useEffect(()=>{
+    // getProjects();
+  },[]);
+  
   return (
     <div className='OurServiceBanner'>
       <div className='row h-100'>

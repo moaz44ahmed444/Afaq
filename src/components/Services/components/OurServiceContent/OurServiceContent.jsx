@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Arrow from '../../../../Images/Arrow.svg';
 import  './OurServiceContent.css';
 import section1 from '../../../../Images/section1.jpg';
@@ -9,10 +9,21 @@ import logosec1 from '../../../../Images/logosec1.svg';
 import logosec2 from '../../../../Images/logosec2.svg';
 import logosec3 from '../../../../Images/logosec3.svg';
 import logosec4 from '../../../../Images/logosec4.svg';
-
+import axios from 'axios';
 
 
 const OurServiceContent = () => {
+    const [OurServiceData, setOurServiceData] = useState([]);
+    async function getOurService(){
+      let response = await axios.get(``);
+      setOurServiceData(response);
+      console.log(response);
+    }
+  
+    useEffect(()=>{
+    //   getOurService();
+    },[]);
+
   return (
     <div className='OurServiceContent'>
         <div className="container pb-5">

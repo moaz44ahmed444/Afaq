@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './ProjectsContent.css';
 import MinimalBedroom1 from '../../../../Images/WhatsApp Image 2024-01-16 at 4.42.44 PM.jpeg';
 import MinimalBedroom2 from '../../../../Images/WhatsApp Image 2024-01-16 at 4.42.43 PM (2).jpeg';
@@ -10,6 +10,7 @@ import Lazordy from '../../../../Images/notDecoration/WhatsApp Image 2024-01-25 
 import Door from '../../../../Images/notDecoration/WhatsApp Image 2024-01-25 at 9.00.04 AM (1).jpeg';
 import ModernMedroom2 from '../../../../Images/WhatsApp Image 2024-01-16 at 4.42.45 PM (1).jpeg';
 import rightArrow from '../../../../Images/right.svg';
+import axios from 'axios';
 
 const TallCard = ({ image, title }) => {
     return(
@@ -48,6 +49,18 @@ const ShortCard = ({ image, title }) => {
     )
 }
 const ProjectsContent = () => {
+
+    const [ProjectsData, setProjectsData] = useState([]);
+  async function getProjects(){
+    let response = await axios.get(``);
+    setProjectsData(response);
+    console.log(response);
+  }
+
+  useEffect(()=>{
+    // getProjects();
+  },[]);
+
   return (
     <div className='ProjectsContent '>
         <div className="container align-items-center justify-content-center" >

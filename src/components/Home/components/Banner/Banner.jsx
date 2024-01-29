@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Banner.css';
+import axios from 'axios';
 
 const Banner = () => {
+  const [HomeData, setHomeData] = useState([]);
+  async function getHome(){
+    let response = await axios.get(``);
+    setHomeData(response);
+    console.log(response);
+  }
+
+  useEffect(()=>{
+    // getHome();
+  },[])
   return (
     <div className='Home-Banner'>
       <div className='row h-100'>

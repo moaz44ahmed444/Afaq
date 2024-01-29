@@ -1,11 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Process.css';
 import Call from '../../../../Images/Call Icon.svg';
 import Clock from '../../../../Images/Clock Icon.svg';
 import Location from '../../../../Images/Location Icon.svg';
+import axios from 'axios';
 
 
 const Process = () => {
+  const [formData, setformData] = useState({
+    fullName:'',
+    email:'',
+    pohne:'',
+    company:'',
+    message:'',
+  });
+
+  const handleChange = (e) => {
+    setformData({...formData,[e.target.name]: e.target.value})
+  };
+
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(``,formData);
+      if (response.status === 200) {
+        // Handle successful response
+        console.log('Form submitted successfully');
+      } else {
+        // Handle error response
+        console.error('Form submission failed');
+      }
+    } catch (error) {
+      // Handle network or other errors
+      console.error('Error during form submission:', error);
+    }
+  }
+
   return (
     <div className='process'>
       <div className="container">
@@ -42,33 +73,73 @@ const Process = () => {
           </div>
 
           <div className="formDetails col-lg-6 pt-5 mt-2 ms-5 ps-5">
-          <form>
-            <div className="row mb-3">
-              <div className="col-md-6">
-                <label htmlFor="fullName" className="form-label text-white">Full Name</label>
-                <input type="text" className="form-control rounded-pill " id="fullName" placeholder='john david'/>
+            <form onSubmit={handleSubmit}>
+              <div className="row mb-3">
+                <div className="col-md-6">
+                  <label htmlFor="fullName" className="form-label text-white">Full Name</label>
+                  <input 
+                  type="text" 
+                  className="form-control rounded-pill " 
+                  id="fullName" 
+                  name='fullName' 
+                  placeholder='john david'
+                  value={formData.fullName}
+                  onChange={handleChange}
+                  />
+                </div>
+                <div className="col-md-6">
+                  <label htmlFor="email" className="form-label text-white">Email</label>
+                  <input 
+                  type="email" 
+                  className="form-control rounded-pill" 
+                  id="email" 
+                  placeholder='consult@mail.com' 
+                  name='email'
+                  value={formData.email}
+                  onChange={handleChange}
+                  />
+                </div>
               </div>
-              <div className="col-md-6">
-                <label htmlFor="email" className="form-label text-white">Email</label>
-                <input type="email" className="form-control rounded-pill" id="email" placeholder='consult@mail.com' />
+              <div className="row mb-3">
+                <div className="col-md-6">
+                  <label htmlFor="phone" className="form-label text-white">Phone</label>
+                  <input
+                    type="tel"
+                    className="form-control rounded-pill"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder='+008 654 231'
+                  />                
+                  </div>
+                <div className="col-md-6">
+                  <label htmlFor="company" className="form-label text-white">Company (Optional)</label>
+                  <input
+                    type="text"
+                    className="form-control rounded-pill"
+                    id="company"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    placeholder='yourcompany.com'
+                  />
+                </div>
               </div>
-            </div>
-            <div className="row mb-3">
-              <div className="col-md-6">
-                <label htmlFor="phone" className="form-label text-white">Phone</label>
-                <input type="tel" className="form-control rounded-pill" id="phone" placeholder='+008 654 231' />
+              <div className="mb-3">
+                <label htmlFor="message" className="form-label text-white">Message</label>
+                <textarea
+                  className="form-control rounded-4"
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  rows="3"
+                  placeholder='Briefly tell us about your project and your current goals. How can we help you?'
+                ></textarea>              
               </div>
-              <div className="col-md-6">
-                <label htmlFor="company" className="form-label text-white">Company (Optional)</label>
-                <input type="text" className="form-control rounded-pill" id="company" placeholder='yourcompany.com'/>
-              </div>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="message" className="form-label text-white">Message</label>
-              <textarea className="form-control rounded-4" id="message" rows="3" placeholder='Briefly tell us about your project and your current goals. How can we help you?'></textarea>
-            </div>
-            <button type="submit" className="btn btn-primary rounded-pill">Send Message</button>
-          </form>
+              <button type="submit" className="btn btn-primary rounded-pill">Send Message</button>
+            </form>
           </div>
         </div>
       </div>

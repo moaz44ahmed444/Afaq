@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './OurValues.css';
 import Innovation from '../../../../Images/Innovation.svg';
 import Teamwork from '../../../../Images/Teamwork.svg';
 import Excellence from '../../../../Images/Excellence.svg';
 import Responsibility from '../../../../Images/Responsibility.svg';
+import axios from 'axios';
 
 
 const OurValues = () => {
+    const [AboutUsData, setAboutUsData] = useState([]);
+    async function getAboutUs(){
+      let response = await axios.get(``);
+      setAboutUsData(response);
+      console.log(response);
+    }
+  
+    useEffect(()=>{
+    //   getAboutUs();
+    },[]);
   return (
     <div className='OurValues'>
         <div className="container">
