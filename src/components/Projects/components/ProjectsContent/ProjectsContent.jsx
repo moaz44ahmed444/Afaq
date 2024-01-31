@@ -12,37 +12,37 @@ import ModernMedroom2 from '../../../../Images/WhatsApp Image 2024-01-16 at 4.42
 import rightArrow from '../../../../Images/right.svg';
 import axios from 'axios';
 
-const TallCard = ({ image, title }) => {
+const TallCard = ({ image, title, description }) => {
     return(
         <div className="tallPic col-lg-6">
             <img src={image} className='' alt=''/>
             <div className="cardData p-2">
                 <div className='row'>
-                    <h6>{title}</h6>
-                    <p>Decor / Artchitecture</p>
+                    <h6 className='p-3'>{title}</h6>
+                    <p>{description}</p>
                 </div>
 
                 <svg xmlns="http://www.w3.org/2000/svg" className='rightArrow' width="70" height="70" viewBox="0 0 70 70" fill="none">
                     <circle cx="35" cy="35" r="35" fill="#E5BD63"/>
-                    <path d="M32 44L40 35L32 26" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M32 44L40 35L32 26" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
             </div>
         </div>
     )
 }
-const ShortCard = ({ image, title }) => {
+const ShortCard = ({ image, title, description }) => {
     return (
         <div className="shortPic col-lg-6 ">
             <img src={image} className='' alt=''/>
             <div className="cardData p-2">
                 <div className='row'>
                     <h6>{title}</h6>
-                    <p>Decor / Artchitecture</p>
+                    <p>{description}</p>
                 </div>
 
                 <svg xmlns="http://www.w3.org/2000/svg" className='rightArrow' width="70" height="70" viewBox="0 0 70 70" fill="none">
                     <circle cx="35" cy="35" r="35" fill="#E5BD63"/>
-                    <path d="M32 44L40 35L32 26" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M32 44L40 35L32 26" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
             </div>
         </div>
@@ -51,15 +51,37 @@ const ShortCard = ({ image, title }) => {
 const ProjectsContent = () => {
 
     const [ProjectsData, setProjectsData] = useState([]);
-  async function getProjects(){
-    let response = await axios.get(``);
-    setProjectsData(response);
-    console.log(response);
-  }
+
+    async function getProjects() {
+        try {
+          let response = await axios.get(`https://pijet.app/afaq/api/getProjects`);
+          setProjectsData(response.data.data);
+          console.log(response.data);
+        } catch (error) {
+          console.error('Error fetching projects data:', error);
+        }
+      }
+    
 
   useEffect(()=>{
-    // getProjects();
+     getProjects();
   },[]);
+
+  
+  const renderProjectCards = () => {
+    return ProjectsData.map((project, index) => {
+      const { id, name_en, text_en, image } = project;
+        return (
+          <TallCard
+            key={id}
+            image={`https://pijet.app/afaq/uploads/projects/source/${image}`}
+            title={name_en}
+            description={text_en}
+          />
+        );
+      
+    });
+  };
 
   return (
     <div className='ProjectsContent '>
@@ -71,20 +93,7 @@ const ProjectsContent = () => {
                 <p>Shop</p>
             </div>
 
-            <div className="row ">
-                <div className="cards col-lg-6 ">
-                        <TallCard image={Lazordy} title="Minimal Bedroom" />                
-                        <ShortCard image={ClassicMinimalBedroom} title="Classic Minimal Bedroom" />
-                        <TallCard image={MinimalBedroomTable} title="Minimal Bedroom table" />
-                        <ShortCard image={MinimalBedroom1} title="Modern Medroom" />
-                </div>
-                <div className="cards col-lg-6">
-                        <ShortCard image={MinimalBedroom2} title="Minimal Bedroom" />
-                        <TallCard image={ModernBedroom} title="Bodern Medroom" />
-                        <ShortCard image={SystemTable} title="System Table" />
-                        <ShortCard image={Door} title="Modern Bedroom" />
-                </div>
-            </div>
+            <div className="row cards">{renderProjectCards()}</div>
 
             <div className="pagination">
                 <div className="row">
@@ -114,7 +123,7 @@ const ProjectsContent = () => {
                     <text x="50%" y="50%" textAnchor="middle" dy="0.3em" fill="white" fontSize="20">
                         04
                     </text>
-                    <path d="M23.5571 32L29.5 25.3143L23.5571 18.6286" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M23.5571 32L29.5 25.3143L23.5571 18.6286" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                 </div>
             </div>

@@ -5,15 +5,21 @@ import 'react-circular-progressbar/dist/styles.css';
 import axios from 'axios';
 
 const Experiance = () => {
-  const [HomeData, setHomeData] = useState([]);
-  async function getHome(){
-    let response = await axios.get(``);
-    setHomeData(response);
-    console.log(response);
+  const [ExperienceData, setExperienceData] = useState([]);
+
+  async function getExperience(){
+    try {
+      let response = await axios.get(`https://pijet.app/afaq/api/getAbout`);
+      setExperienceData(response.data.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error fetching Experiance data:', error);
+    }
   }
 
+
   useEffect(()=>{
-    // getHome();
+    getExperience();
   },[]);
 
   return (
@@ -22,7 +28,7 @@ const Experiance = () => {
         <div className="row">
           <div className="col-lg-4 pt-4">
             <h1 className='title text-light pb-5'>Experiance</h1>
-            <h4 className='text-dark fw-bold'>More than 25 years of experience</h4>
+            <h4 className='text-dark fw-bold'>More than {ExperienceData[0]? ExperienceData[0].years_of_experiance : ''} years of experience</h4>
             <p className='text-dark'>3000+ our clients are insured around the World</p>
           </div>
 

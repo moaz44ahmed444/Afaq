@@ -3,29 +3,40 @@ import './Banner.css';
 import axios from 'axios';
 
 const Banner = () => {
+
   const [HomeData, setHomeData] = useState([]);
+
   async function getHome(){
-    let response = await axios.get(``);
-    setHomeData(response);
-    console.log(response);
+    try {
+      let response = await axios.get(`https://pijet.app/afaq/api/getHomeSliders`);
+      setHomeData(response.data.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error fetching Home data:', error);
+    }
   }
 
   useEffect(()=>{
-    // getHome();
+     getHome();
   },[])
   return (
     <div className='Home-Banner'>
       <div className='row h-100'>
         
-        <div className='container col-4 p-5 mt-5' >
-          <h1 className='pb-2'>Create your Ad & interior design</h1>
-          <p className='p-banner pb-5'>Transform your vision into vibrant reality with our advertising and decoration expertise – where creativity meets innovation to craft impressions that resonate and spaces that captivate</p>
-          <h5>know more</h5>
+        <div className='container col-4 ' >
+          <h1 className='pb-2'>{HomeData[0] ? HomeData[0].title : ''}</h1>
+          <p className='p-banner pb-5 '>{HomeData[0] ? HomeData[0].text : ''}</p>
         </div>
 
-        <div className='banner-image img-fuid col-lg-7'>
-          
-        </div>
+        <div
+          className='banner-image img-fluid col-lg-7'
+          style={{
+            backgroundImage: `url(https://pijet.app/afaq/uploads/sliders/home-sliders/source/${HomeData[0] ? HomeData[0].image : ''})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            backgroundPosition: '60% 40%',
+          }}
+        ></div>
 
       </div>
     </div>

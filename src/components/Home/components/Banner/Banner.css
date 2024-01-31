@@ -9,6 +9,10 @@
 
 }
 
+.Home-Banner .container {
+    margin-top: 15rem;
+}
+
 .Home-Banner .banner-image {
     background: url("../../../../Images/notDecoration/WhatsApp\ Image\ 2024-01-25\ at\ 9.00.01\ AM\ \(5\).jpeg"), lightgray ;
     background-repeat: no-repeat;
@@ -31,7 +35,7 @@
 .Home-Banner p{
     color: #E5E5E5;
     font-family: Gothic A1;
-    font-size: 15px;
+    font-size: 25px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;

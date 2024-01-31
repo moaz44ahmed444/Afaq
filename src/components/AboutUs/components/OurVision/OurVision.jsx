@@ -7,24 +7,31 @@ import axios from 'axios';
 const OurVision = () => {
     const [AboutUsData, setAboutUsData] = useState([]);
     async function getAboutUs(){
-      let response = await axios.get(``);
-      setAboutUsData(response);
-      console.log(response);
+      try {
+        let {data} = await axios.get(`https://pijet.app/afaq/api/getAboutStrucs`);
+        setAboutUsData(data.data);
+        console.log(data.data);
+      } catch (error) {
+          console.error('Error fetching Navbar data:', error);
+      }
     }
   
     useEffect(()=>{
-      // getAboutUs();
+       getAboutUs();
     },[]);
+
+    const visionData = AboutUsData.find(item => item.id === 3);
+    
   return (
     <div className='OurVision'>
-        <div className="container">
+        <div className="container" >
             <div className="row justify-content-center align-items-center justify-content-between">
                 <div className="col-lg-4">
-                    <div className="title">Our Vision</div>
-                    <p>It seeks to play a distinguished role in cooperating with our clients and consulting partners in the field of advertising throughout the Kingdom and abroad, in order to ensure our position in the field of advertising.</p>
+                    <div className="title">{visionData ? visionData.title : ''}</div>
+                    <p>{visionData ? visionData.text : ''}</p>
                 </div>
                 <div className="col-lg-8 ps-5">
-                    <img src={Image} alt='' className='OurVisionImage'/>
+                    <img src={`https://pijet.app/afaq/uploads/aboutStrucs/source/${visionData ? visionData.image : ''}`} alt='' className='OurVisionImage'/>
                 </div>
             </div>
         </div>

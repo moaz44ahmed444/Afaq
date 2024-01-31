@@ -7,16 +7,37 @@ import axios from 'axios';
 
 
 const OurServices = () => {
-  const [HomeData, setHomeData] = useState([]);
-  async function getHome(){
-    let response = await axios.get(``);
-    setHomeData(response);
-    console.log(response);
+
+  const [servicesData, setServicesData] = useState([]);
+
+  async function getServices() {
+    try {
+      let response = await axios.get(`https://pijet.app/afaq/api/getServices`);
+      setServicesData(response.data.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error fetching services data:', error);
+    }
   }
 
-  useEffect(()=>{
-    // getHome();
-  },[])
+  useEffect(() => {
+    getServices();
+  }, []);
+
+  const renderServices = () => {
+    return servicesData.map((service) => (
+      <div className="col-lg-4" key={service? service.id : ''}>
+        <div className="card p-4 rounded-0" style={{backgroundColor: "#252525", color: "aliceblue", borderColor:"grey"}}>
+          <img src={`https://pijet.app/afaq/uploads/services/source/${service? service.icon : ''}`} alt={service? service.alt_img : ''} className="card-img-top" />
+          <div className="card-body">
+            <h1 className="card-title">{service? service.name_service_en : ''}</h1>
+            <p className="card-text">{service? service.text_en : ''}</p>
+          </div>
+        </div>
+      </div>
+    ))
+  }
+
   return (
     <div className='ourServices'>
       <div className="container">
@@ -26,34 +47,7 @@ const OurServices = () => {
         </div>
 
         <div className="row pt-5 col-lg-11 ">
-          <div className="col-lg-4">
-            <div className="card p-4 rounded-0" style={{backgroundColor: "#252525", color: "aliceblue", borderColor:"grey"}}>
-              <img src={icon1} className="card-img-top" alt="..."/>
-              <div className="card-body">
-                <h1 className="card-title">Architectural & Interior design</h1>
-                <p className="card-text">Non diam pretium tristique augue placerat dolor. Accumsan nibh nunc, molestie volutpat ipsum, ultricies.</p>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-4">
-          <div className="card p-4 rounded-0" style={{backgroundColor: "#252525", color: "aliceblue", borderColor:"grey"}}>
-              <img src={icon2} className="card-img-top" alt="..." />
-              <div className="card-body">
-                <h1 className="card-title">Building Renovation</h1>
-                <p className="card-text">Non diam pretium tristique augue placerat dolor. Accumsan nibh nunc, molestie volutpat ipsum, ultricies.</p>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-4">
-          <div className="card p-4 rounded-0" style={{backgroundColor: "#252525", color: "aliceblue", borderColor:"grey"}}>
-              <img src={icon3} className="card-img-top" alt="..."/>
-              <div className="card-body">
-                <h1 className="card-title">Construciton Management</h1>
-                <p className="card-text">Non diam pretium tristique augue placerat dolor. Accumsan nibh nunc, molestie volutpat ipsum, ultricies.</p>
-              </div>
-            </div>
-          </div>
-          
+          {renderServices()}
         </div>
       </div>
     </div>

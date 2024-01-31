@@ -7,32 +7,38 @@ import axios from 'axios';
 const About = () => {
     const [AboutUsData, setAboutUsData] = useState([]);
     async function getAboutUs(){
-      let response = await axios.get(``);
-      setAboutUsData(response);
-      console.log(response);
+        try {
+            let {data} = await axios.get(`https://pijet.app/afaq/api/getAboutStrucs`);
+            setAboutUsData(data.data);
+            console.log(data.data);
+        } catch (error) {
+            console.error('Error fetching Navbar data:', error);
+        }
     }
   
     useEffect(()=>{
-    //   getAboutUs();
+       getAboutUs();
     },[]);
+
+    const aboutData = AboutUsData.find(item => item.id === 1);
+    const goalsData = AboutUsData.find(item => item.id === 5);
+
   return (
     <div className='about'>
-        <div className="container">
-            <div className='aboutData' style={{width: '1206px'}}>
-                <div className="Title text-center">About our company</div>
+        <div className="container " >
+            <div className='aboutData' style={{width: '1206px'}} >
+                <div className="Title text-center">{aboutData ? aboutData.title : ''}</div>
                 <div className="description text-center p-5">
-                    Afaq Professional Advertising Agency is an “individual” institution specializing in all advertising activities. 
-                    It has full responsibility for its work, and is proud of its extensive experience in carrying out all advertising activities, 
-                    advertising tasks, advertising and advertising campaigns, and implementing all forms of advertising and advisory and media services.
+                {aboutData ? aboutData.text : ''}
                 </div>
             </div>
 
             <div className="row d-flex pt-5 justify-content-between">
                 <div className="col-lg-8">
-                    <img src={Image1} alt='' className='image1 image-fluid'/>
+                    <img src={`https://pijet.app/afaq/uploads/aboutStrucs/source/${aboutData ? aboutData.image : ''}`} alt='' className='image1 image-fluid'/>
                 </div>
                 <div className="col-lg-4 ">
-                    <img src={Image2} alt='' className='image2 image-fluid'/>
+                    <img src={`https://pijet.app/afaq/uploads/aboutStrucs/source/${goalsData ? goalsData.image : ''}`}  alt='' className='image2 image-fluid'/>
                 </div>
             </div>
 

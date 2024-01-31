@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Process.css';
 import Call from '../../../../Images/Call Icon.svg';
 import Clock from '../../../../Images/Clock Icon.svg';
@@ -7,13 +7,12 @@ import axios from 'axios';
 
 
 const Process = () => {
+  const [ContactData, setContactData] = useState([]);
   const [formData, setformData] = useState({
-    fullName:'',
-    email:'',
-    pohne:'',
-    company:'',
-    message:'',
-  });
+    name: '',
+    phone: '',
+    message: '',
+});
 
   const handleChange = (e) => {
     setformData({...formData,[e.target.name]: e.target.value})
@@ -23,7 +22,7 @@ const Process = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(``,formData);
+      const response = await axios.post(`https://pijet.app/afaq/api/setMessage`,formData);
       if (response.status === 200) {
         // Handle successful response
         console.log('Form submitted successfully');
@@ -36,6 +35,20 @@ const Process = () => {
       console.error('Error during form submission:', error);
     }
   }
+
+  async function getContact(){
+    try {
+      let { data } = await axios.get(`https://pijet.app/afaq/api/getSettings`);
+      setContactData(data.data);
+    } catch (error) {
+      console.error('Error fetching Navbar data:', error);
+    }
+  }
+
+  useEffect(()=>{
+     getContact();
+  },[]);
+  
 
   return (
     <div className='process'>
@@ -50,7 +63,7 @@ const Process = () => {
                 <img src={Call} className="profile-photo " alt="..." style={{width: "52.332px"}}/>
                 <div className="text-white ms-3">
                   <p className='h6 text-white-50'>Call Today</p>
-                  <p className='text-white'>+966 54 680 8112</p>
+                  <p className='text-white'>{ContactData.length > 0 ? ContactData[0].mobile : ''}</p>
                 </div>
               </div>
 
@@ -75,33 +88,21 @@ const Process = () => {
           <div className="formDetails col-lg-6 pt-5 mt-2 ms-5 ps-5">
             <form onSubmit={handleSubmit}>
               <div className="row mb-3">
-                <div className="col-md-6">
-                  <label htmlFor="fullName" className="form-label text-white">Full Name</label>
+                <div className="col-lg-12">
+                  <label htmlFor="name" className="form-label text-white">Full Name</label>
                   <input 
                   type="text" 
                   className="form-control rounded-pill " 
-                  id="fullName" 
-                  name='fullName' 
+                  id="name" 
+                  name='name' 
                   placeholder='john david'
-                  value={formData.fullName}
-                  onChange={handleChange}
-                  />
-                </div>
-                <div className="col-md-6">
-                  <label htmlFor="email" className="form-label text-white">Email</label>
-                  <input 
-                  type="email" 
-                  className="form-control rounded-pill" 
-                  id="email" 
-                  placeholder='consult@mail.com' 
-                  name='email'
-                  value={formData.email}
+                  value={formData.name}
                   onChange={handleChange}
                   />
                 </div>
               </div>
               <div className="row mb-3">
-                <div className="col-md-6">
+                <div className="col-lg-12">
                   <label htmlFor="phone" className="form-label text-white">Phone</label>
                   <input
                     type="tel"
@@ -113,18 +114,6 @@ const Process = () => {
                     placeholder='+008 654 231'
                   />                
                   </div>
-                <div className="col-md-6">
-                  <label htmlFor="company" className="form-label text-white">Company (Optional)</label>
-                  <input
-                    type="text"
-                    className="form-control rounded-pill"
-                    id="company"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    placeholder='yourcompany.com'
-                  />
-                </div>
               </div>
               <div className="mb-3">
                 <label htmlFor="message" className="form-label text-white">Message</label>

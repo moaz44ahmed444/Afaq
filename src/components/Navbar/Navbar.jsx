@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import './Navbar.css';
 import logo from '../../Images/logo2.png'
 import axios from 'axios';
@@ -7,12 +7,12 @@ import axios from 'axios';
 const Navbar = () => {
 
   const [NavbarData, setNavbarData] = useState([]);
-  
+  let navigate = useNavigate();
+
   async function getNavbar() {
     try {
       let { data } = await axios.get(`https://pijet.app/afaq/api/getMenuItems`);
       setNavbarData(data.data);
-      console.log('API Response:', data);
     } catch (error) {
       console.error('Error fetching Navbar data:', error);
     }
@@ -22,32 +22,27 @@ const Navbar = () => {
   useEffect(()=>{
     getNavbar();
   },[]);
+  
+  const handleNavbarItemClick = (link) => {
+    // Scroll to the top of the page
+    window.scrollTo(0, 0);
 
-  // async function getNavbar() {
-  //   try {
-  //     const response = await fetch('https://pijet.app/afaq/api/getMenuItems');
-      
-  //     if (!response.ok) {
-  //       throw new Error(`HTTP error! Status: ${response.status}`);
-  //     }
-  
-  //     const data = await response.json();
-  //     setNavbarData(data.data);
-  //     console.log('API Response:', data);
-  //   } catch (error) {
-  //     console.error('Error fetching Navbar data:', error.message);
-  //   }
-  // }
-  
-  
+    // Navigate to the specified link
+    navigate(link);
+  };
+
 
   const NavbarItems = NavbarData.map((NavItem) => {
+    if (NavItem.status === 0) return null;
     return (
-      <ul className="navbar-nav  mt-2 mt-lg-0">
         <li key={NavItem.id}>
-          <Link className="nav-link " to={ NavItem.link_en}>{NavItem.name_en}</Link>
+          <NavLink className={({ isActive }) => isActive ? "active nav-link" : "nav-link"}
+           to={ NavItem.link_en === "Home" ? "/" : NavItem.link_en}
+           onClick={() => handleNavbarItemClick(NavItem.link_en === "Home" ? "/" : NavItem.link_en)}
+          >
+           {NavItem.name_en}
+          </NavLink>
         </li>
-      </ul>
     )
   })
 
@@ -73,30 +68,9 @@ const Navbar = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse justify-content-center" id="collapsibleNavId">
+          <ul className="navbar-nav  mt-2 mt-lg-0">
             {NavbarItems}
-            {/* <ul className="navbar-nav  mt-2 mt-lg-0">
-              
-              <li className="nav-item">
-                <Link className="nav-link " to="/" >Home</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="AboutUs">About Us</Link>
-              </li>
-              <li className="nav-item ">
-                <Link className="nav-link" to="Projects">Projects</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="Services">Services</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="Contact">Contact</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="Help">Help</Link>
-              </li>
-              
-
-            </ul> */}
+          </ul>
           </div>
         </div>
       </nav>

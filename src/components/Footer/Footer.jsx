@@ -1,8 +1,94 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Footer.css'
 import logo from '../../Images/logo2.png'
+import axios from 'axios'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 const Footer = () => {
+
+  const [settingsData, setSettingsData] = useState([]);
+  const [CompanyData, setCompanyData] = useState([]);
+  let navigate = useNavigate();
+
+  async function getSettings() {
+    try {
+      let response = await axios.get(`https://pijet.app/afaq/api/getSettings`);
+      setSettingsData(response.data.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error fetching services data:', error);
+    }
+  }
+  
+  async function getCompany() {
+    try {
+      let { data } = await axios.get(`https://pijet.app/afaq/api/getMenuItems`);
+      setCompanyData(data.data);
+    } catch (error) {
+      console.error('Error fetching Company data:', error);
+    }
+  }
+
+  useEffect(() => {
+    getSettings();
+    getCompany();
+  }, []);
+
+  const handleContactUsClick = () => {
+    // Scroll to the top of the page
+    window.scrollTo(0, 0);
+    
+    // Navigate to the 'Contact_Us' route
+    navigate('Contact_Us');
+  };
+
+  const renderSocialIcons = () => {
+    if (settingsData.length === 0) {
+      return null;
+    }
+
+    const socialIcons = [
+      { name: 'facebook', url: settingsData[0].facebook },
+      { name: 'twitter', url: settingsData[0].twitter },
+      { name: 'linkedin', url: settingsData[0].linkedin },
+      { name: 'instagram', url: settingsData[0].instgram },
+    ];
+
+    return socialIcons.map((icon) => (
+      <li key={icon.name}>
+        <a className="text-white px-4" href={icon.url} target="_blank" rel="noopener noreferrer">
+          <i className={`fab fa-${icon.name}`}></i>
+        </a>
+      </li>
+    ));
+  };
+
+  const renderCompanyList = () => {
+    if (CompanyData.length === 0) {
+      return null;
+    }
+  
+    const handleCompanyItemClick = (link) => {
+      // Scroll to the top of the page
+      window.scrollTo(0, 0);
+  
+      // Navigate to the specified link
+      navigate(link);
+    };
+  
+    return CompanyData.map((item) => (
+      <li key={item.id}>
+        <button
+          className="nav-link"
+          onClick={() => handleCompanyItemClick(item.link_en === "Home" ? "/" : item.link_en)}
+        >
+          {item.name_en}
+        </button>
+      </li>
+    ));
+  };
+  
+
   return (
     <>
       <footer className="footer text-center text-lg-start">
@@ -16,39 +102,20 @@ const Footer = () => {
               </div>
 
                 <ul className="list-unstyled d-flex flex-row justify-content-center">
-                  <li>
-                    <a className="text-white px-4" href="#!">
-                      <i className="fab fa-facebook"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="text-white px-4" href="#!">
-                      <i className="fab fa-twitter"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="text-white px-4" href="#!">
-                      <i className="fab fa-linkedin"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="text-white ps-4" href="#!">
-                      <i className="fab fa-instagram"></i>
-                    </a>
-                  </li>
+                  {renderSocialIcons()}
                 </ul>
             </div>
 
-            <div className="col-lg-7 ps-5 ms-5 col-md-6">
+            <div className="col-lg-8 ps-5 ms-5 col-md-6">
               <div className='row'>
                 <div className="col-md-4 mb-4">
 
                 <h5 className="text-uppercase ">Product</h5>
                 <div className='small-line mb-4'></div>
                 <ul className="list-unstyled">
-                  <li>Service</li>
-                  <li>FAQ</li>
-                  <li>Get Quote</li>
+                  <li>mobile: {settingsData[0]? settingsData[0].mobile : ''}</li>
+                  <li>mobile 2: {settingsData[0]? settingsData[0].mobile2 : ''}</li>
+                  <li>Whatsapp: {settingsData[0]? settingsData[0].whatsapp : ''}</li>
                 </ul>
               </div>
 
@@ -57,12 +124,7 @@ const Footer = () => {
                 <div className='small-line mb-4'></div>
 
                 <ul className="list-unstyled">
-                  <li>About</li>
-                  <li>News</li>
-                  <li>Contacts</li>
-                  <li>Service</li>
-                  <li>Our team</li>
-                  <li>Out approach</li>
+                  {renderCompanyList()}
                 </ul>
               </div>
 
@@ -71,7 +133,7 @@ const Footer = () => {
                 <div className='small-line mb-4'></div>
 
                 <p>Saudia arabia, jaddah</p>
-                <button type='button' className='btn btn-light rounded-pill'>Contact Us</button>
+                <button type='button' onClick={handleContactUsClick} className='btn btn-light rounded-pill'>Contact Us</button>
               </div>
 
               </div>
@@ -84,119 +146,6 @@ const Footer = () => {
         </div> 
 
       </footer>
-
-
-
-{/* 
-  <footer class="bg-primary text-center text-lg-start text-white">
-    <div class="container p-4">
-      <div class="row my-4">
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-
-          <div class="rounded-circle bg-white shadow-1-strong d-flex align-items-center justify-content-center mb-4 mx-auto" style="width: 150px; height: 150px;">
-            <img src="https://mdbootstrap.com/img/Photos/new-templates/animal-shelter/logo.png" height="70" alt=""
-                 loading="lazy" />
-          </div>
-
-          <p class="text-center">Homless animal shelter The budgetary unit of the Capital City of Warsaw</p>
-
-          <ul class="list-unstyled d-flex flex-row justify-content-center">
-            <li>
-              <a class="text-white px-2" href="#!">
-                <i class="fab fa-facebook-square"></i>
-              </a>
-            </li>
-            <li>
-              <a class="text-white px-2" href="#!">
-                <i class="fab fa-instagram"></i>
-              </a>
-            </li>
-            <li>
-              <a class="text-white ps-2" href="#!">
-                <i class="fab fa-youtube"></i>
-              </a>
-            </li>
-          </ul>
-
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase mb-4">Animals</h5>
-
-          <ul class="list-unstyled">
-            <li class="mb-2">
-              <a href="#!" class="text-white"><i class="fas fa-paw pe-3"></i>When your pet is missing</a>
-            </li>
-            <li class="mb-2">
-              <a href="#!" class="text-white"><i class="fas fa-paw pe-3"></i>Recently found</a>
-            </li>
-            <li class="mb-2">
-              <a href="#!" class="text-white"><i class="fas fa-paw pe-3"></i>How to adopt?</a>
-            </li>
-            <li class="mb-2">
-              <a href="#!" class="text-white"><i class="fas fa-paw pe-3"></i>Pets for adoption</a>
-            </li>
-            <li class="mb-2">
-              <a href="#!" class="text-white"><i class="fas fa-paw pe-3"></i>Material gifts</a>
-            </li>
-            <li class="mb-2">
-              <a href="#!" class="text-white"><i class="fas fa-paw pe-3"></i>Help with walks</a>
-            </li>
-            <li class="mb-2">
-              <a href="#!" class="text-white"><i class="fas fa-paw pe-3"></i>Volunteer activities</a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase mb-4">Animals</h5>
-
-          <ul class="list-unstyled">
-            <li class="mb-2">
-              <a href="#!" class="text-white"><i class="fas fa-paw pe-3"></i>General information</a>
-            </li>
-            <li class="mb-2">
-              <a href="#!" class="text-white"><i class="fas fa-paw pe-3"></i>About the shelter</a>
-            </li>
-            <li class="mb-2">
-              <a href="#!" class="text-white"><i class="fas fa-paw pe-3"></i>Statistic data</a>
-            </li>
-            <li class="mb-2">
-              <a href="#!" class="text-white"><i class="fas fa-paw pe-3"></i>Job</a>
-            </li>
-            <li class="mb-2">
-              <a href="#!" class="text-white"><i class="fas fa-paw pe-3"></i>Tenders</a>
-            </li>
-            <li class="mb-2">
-              <a href="#!" class="text-white"><i class="fas fa-paw pe-3"></i>Contact</a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase mb-4">Contact</h5>
-
-          <ul class="list-unstyled">
-            <li>
-              <p><i class="fas fa-map-marker-alt pe-2"></i>Warsaw, 57 Street, Poland</p>
-            </li>
-            <li>
-              <p><i class="fas fa-phone pe-2"></i>+ 01 234 567 89</p>
-            </li>
-            <li>
-              <p><i class="fas fa-envelope pe-2 mb-0"></i>contact@example.com</p>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-      © 2020 Copyright:
-      <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-    </div>
-  </footer>
- */}
 
     </>
   )
